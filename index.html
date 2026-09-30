@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrics Chat</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #chat {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mensagem {
+            background: #242424;
+            padding: 12px 16px;
+            border-radius: 12px;
+            width: fit-content;
+            max-width: 80%;
+            animation: aparecer 0.4s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="chat"></div>
+
+    <button onclick="iniciar()">▶ PLAY</button>
+
+    <script>
+        const letra = [
+            { tempo: 0, texto: "Trecho curto da música" },
+            { tempo: 3, texto: "Digite aqui a próxima linha" },
+            { tempo: 6, texto: "Digite aqui a próxima linha" },
+            { tempo: 9, texto: "Digite aqui a próxima linha" }
+        ];
+
+        function iniciar() {
+            const chat = document.getElementById("chat");
+            chat.innerHTML = "";
+
+            letra.forEach(linha => {
+                setTimeout(() => {
+                    const mensagem = document.createElement("div");
+
+                    mensagem.className = "mensagem";
+                    mensagem.textContent = linha.texto;
+
+                    chat.appendChild(mensagem);
+                }, linha.tempo * 1000);
+            });
+        }
+    </script>
+
+</body>
+</html>
